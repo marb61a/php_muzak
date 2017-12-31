@@ -1,8 +1,9 @@
 <?php 
+	include("includes/config.php");
 	include("includes/classes/Account.php");
 	include("includes/classes/Constants.php");
 
-	$account = new Account();
+	$account = new Account($con);
 
 	include("includes/handlers/register-handler.php");
 	include("includes/handlers/login-handler.php");
@@ -21,6 +22,14 @@
 	<title>PHPMuzak</title>
 </head>
 <body>
+	<?php
+		if(isset($_POST['registerButton'])){
+
+		} else {
+			
+		}
+	?>
+
 	<div id="inputContainer">
 		<form id="loginForm" action="register.php" method="POST">
 			<h2>Login To Your Account</h2>
@@ -82,7 +91,23 @@
 			</p>
 
 			<button type="submit" name="registerButton">Register</button>
+
+			<div class="hasAccountText">
+				<span id="hideRegister">
+					Already have an account? Log in here.	
+				</span>
+			</div>
 		</form>
+	</div>
+
+	<div id="loginText">
+		<h1>Get great music, right now</h1>
+		<h2>Listen to loads of songs for free</h2>
+		<ul>
+			<li>Discover music you'll fall in love with</li>
+			<li>Create your own playlists</li>
+			<li>Follow artists to keep up to date</li>
+		</ul>	
 	</div>
 </body>
 </html>
