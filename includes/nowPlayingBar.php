@@ -16,6 +16,7 @@
 		audioElement = new Audio();
 
 	});
+	
 </script>
 
 <div id="nowPlayingBarContainer">
