@@ -29,3 +29,35 @@
 </script>
 
 <?php if($term == "") exit(); ?>
+
+<div class="tracklistContainer borderBottom">
+	<h2>SONGS</h2>
+	<ul class="tracklist">
+		<?php
+			$songsQuery = mysqli_query($con, "SELECT id FROM songs WHERE title LIKE '$term%' LIMIT 10");
+
+			if(mysqli_num_rows($songsQuery) == 0){
+				echo "<span class='noResults'>No songs found matching " . $term . "</span>";
+			}
+
+			$songIdArray = array();
+
+			$i = 1;
+			while($row = mysqli_fetch_array($songsQuery)){
+				if(i > 15){
+					break;
+				}
+
+				array_push($songIdArray, $row['id']);
+
+				$albumSong = new Song($con, $row['id']);
+				$albumArtist = $albumSong->getArtist();
+
+				echo "<li class='tracklistRow'>
+					<div>
+					</div>
+				<li>";
+			}
+		?>
+	</ul>
+</div>
