@@ -14,8 +14,38 @@
 	$(document).ready(function(){
 		var newPlaylist = <?php echo $jsonArray; ?>;
 		audioElement = new Audio();
+		setTrack(newPlaylist[0], newPlaylist, false);
+		updateVolumeProgressBar(audioElement.audio);
 
+		$('#nowPlayingBarContainer').on("mousedown touchstart mousemove touchmove", function(e){
+			e.preventDefault();
+		});
+
+		$(".playbackBar .progressBar").mousedown(function() {
+			mouseDown = true;
+		});
+
+		$(".playbackBar .progressBar").mousemove(function(e){
+			if(mouseDown == true){
+				// Set the time of song, depending on the position of the mouse
+				timeFromOffset(e, this);
+			}
+		});
+
+		$(".playbackBar .progressBar")..mouseup(function(e){
+			timeFromOffset(e, this);
+		});
+
+		$(document).mouseup(function(){
+			mouseDown = false;
+		});
 	});
+
+	function timeFromOffset(mouse, progressBar){
+		var percentage = mouse.offsetX / $(progressBar).width() * 100;
+		var seconds = audioElement.audio.duration * (percentage / 100);
+		audioElement.setTime(seconds);
+	};
 	
 </script>
 
