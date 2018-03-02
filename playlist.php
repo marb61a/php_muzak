@@ -30,7 +30,30 @@
 <div class="tracklistContainer">
 	<ul class="tracklist">
 		<?php
+			$songIdArray = $playlist->getSongIds();
 
+			$i = 1;
+			foreach($songIdArray as $songId){
+				$playlistSong = new Song($con, $songId);
+				$songArtist = $playlistSong->getArtist();
+
+				echo " ";
+			}
 		?>
+
+		<script>
+			var tempSongIds = '<?php echo json_encode($songIdArray); ?>';
+			tempPlaylist = JSON.parse(tempSongIds);
+		</script>
 	</ul>
 </div>
+
+<nav class="optionsMenu">
+	<input type="hidden" name="songId">
+	<?php 
+		echo Playlist::getPlaylistsDropdown($con, $userLoggedIn->getUsername()); 
+	?>
+	<div class="item" onclick="removeFromPlaylist(this, '<?php echo $playlistId; ?>')">
+		Remove from Playlist
+	</div>
+</nav>
