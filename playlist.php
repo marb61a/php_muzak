@@ -37,7 +37,34 @@
 				$playlistSong = new Song($con, $songId);
 				$songArtist = $playlistSong->getArtist();
 
-				echo " ";
+				echo "<li class='tracklistRow'>
+					<div class='trackCount'>
+						<img class='play' src='assets/images/icons/play-white.png' onclick='setTrack(\"" . $playlistSong->getId() . "\", tempPlaylist, true)'>
+						<span class='trackNumber'>$i</span>
+					</div>
+
+					<div class='trackInfo'>
+						<span class='trackName'>" 
+							. $playlistSong->getTitle() . 
+						"</span>
+						<span class='artistName'>" 
+							. $songArtist->getName() . 
+						"</span>
+					</div>
+
+					<div class='trackOptions'>
+						<input type='hidden' class='songId' value='" . $playlistSong->getId() . "'>
+						<img class='optionsButton' src='assets/images/icons/more.png' onclick='showOptionsMenu(this)'>
+					</div>
+
+					<div class='trackDuration'>
+						<span>"
+							. $playlistSong->getDuration() .
+						"</span>
+					</div>
+				</li>";
+
+				$i = $i + 1;
 			}
 		?>
 
