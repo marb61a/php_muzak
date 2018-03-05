@@ -26,7 +26,10 @@
 </head>
 <body>
 	<div id="mainContainer">
-		
-	</div>
-</body>
-</html>
+		<div id="topContainer">
+			<?php include("includes/navBarContainer.php"); ?>
+
+			<div id="mainViewContainer">
+				<div id="mainContent">
+					
+				
