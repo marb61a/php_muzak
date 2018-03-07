@@ -69,3 +69,27 @@
 		</script>
 	</ul>
 </div>
+
+<div class="gridViewContainer">
+	<h2>ALBUMS</h2>
+	<?php
+		$albumQuery = mysqli_query($con, "SELECT * FROM albums WHERE artist='$artistId'");
+		while ($row = mysqli_fetch_array($albumQuery)) {
+			echo "<div class='gridViewItem'>
+				<span role='link' tabindex='0' onclick='openPage(\"album.php?id=" . $row['id'] . "\")'>
+					<img src='" . $row['artworkPath'] . "'>
+					<div class='gridViewInfo'>"
+						. $row['title'] .
+					"</div>
+				</span>
+			</div>"	;
+		}
+	?>
+</div>
+
+<nav class="optionsMenu">
+	<input type="hidden" class="songId">
+	<?php
+		echo Playlist::getPlaylistsDropdown($con, $userLoggedIn->getUsername());
+	?>
+</nav>
