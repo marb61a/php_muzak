@@ -4,7 +4,7 @@
 
 	$timezone = date_default_timezone_set("Europe/Dublin");
 
-	$con = mysqli_connect("localhost", "root", "", "phpmuzak");
+	$con = mysqli_connect("localhost", "root", "MyDBNov2017", "phpmuzak");
 
 	if(mysqli_connect_errno()){
 		echo "Failed to connect: " . mysqli_connect_errno();
