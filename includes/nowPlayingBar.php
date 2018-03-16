@@ -47,6 +47,37 @@
 		audioElement.setTime(seconds);
 	};
 	
+	function prevSong(){
+		if(audioElement.audio.currentTime >= 3 || currentIndex == 0){
+			audioElement.setTime(0);
+		} else {
+			currentIndex = currentIndex -1;
+		}
+	}
+	
+	function nextSong(){
+		if(repeat == true){
+			audioElement.setTime(0);
+			playSong();
+			return;
+		}
+		
+		if(currentIndex == currentPlaylist.length - 1){
+			currentIndex = 0;
+		} else {
+			currentIndex++;
+		}
+		
+		var trackToPlay = shuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
+		setTrack(trackToPlay, currentPlaylist, true);
+	}
+	
+	function setRepeat(){
+		repeat = !repeat;
+		var imageName = repeat ? "repeat-active.png" : "repeat.png";
+		$(".controlButton.repeat img").attr("src", "assets/images/icons/" + imageName);
+	}
+	
 </script>
 
 <div id="nowPlayingBarContainer">
