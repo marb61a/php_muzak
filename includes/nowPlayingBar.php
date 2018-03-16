@@ -78,6 +78,37 @@
 		$(".controlButton.repeat img").attr("src", "assets/images/icons/" + imageName);
 	}
 	
+	function setMute(){
+		audioElement.audio.muted = !audioElement.audio.muted;
+		var imageName = audioElement.audio.muted ? "volume-mute.png" : "volume.png";
+		$(".controlButton.volume img").attr("src", "assets/images/icons/" + imageName);
+	}
+	
+	function setShuffle(){
+		shuffle = !shuffle;
+		var imageName = shuffle ? "shuffle-active.png" : "shuffle.png";
+		$(".controlButton.shuffle img").attr("src", "assets/images/icons/" + imageName);
+		
+		if(shuffle == true){
+			// Randomise the playlist
+			shuffleArray(shufflePlaylist);
+			currentIndex = shufflePlaylist.indexof(audioElement.currentlyPlaying.id);
+		} else {
+			// Shuffle has been deactivated so go back to regular playlist
+			currentIndex = currentPlaylist.indexof(audioElement.currentlyPlaying.id);
+		}
+	}
+	
+	function shuffleArray(a){
+		var j, x, i;
+		for(i = a.length; i; i--){
+			j = Math.floor(Math.random() * i);
+        	x = a[i - 1];
+        	a[i - 1] = a[j];
+        	a[j] = x;
+		}
+	}
+	
 </script>
 
 <div id="nowPlayingBarContainer">
