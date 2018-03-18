@@ -128,13 +128,40 @@
 			$(".trackName span").text(track.title);	
 			
 			$.post("includes/handlers/ajax/getArtistJson.php", { artistId: track.artist }, function(data){
-				
+				var artist = JSON.parse(data);
+				$(".trackInfo .artistName span").text(artist.name);
+				$(".trackInfo .artistName span").attr("onclick", "openPage('artist.php?id=" + artist.id + "')");
 			})
+			
+			$.post("includes/handlers/ajax/getAlbumJson.php", { albumId: track.album }, function(data){
+				var album = JSON.parse(data);
+				$(".content .albumLink img").attr("src", album.artworkPath);
+				$(".content .albumLink img").attr("onclick", "openPage('album.php?id=" + album.id + "')");
+				$(".trackInfo .trackName span").attr("onclick", "openPage('album.php?id=" + album.id + "')");
+			})
+			
+			audioElement.setTrack(track);
+			
+			if(play == true){
+				playSong();
+			}
 		});
 	}
 	
 	function playSong(){
+		if(audioElement.audio.currentTime == 0){
+			$.post("includes/handlers/ajax/updatePlays.php", { songId: audioElement.currentlyPlaying.id })
+		}
 		
+		$(".controlButton.play").hide();
+		$(".controlButton.pause").show();
+		audioElement.play();
+	}
+	
+	function pauseSong(){
+		$(".controlButton.play").show();
+		$(".controlButton.pause").hide();
+		audioElement.pause()
 	}
 	
 </script>
