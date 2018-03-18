@@ -109,6 +109,34 @@
 		}
 	}
 	
+	function setTrack(trackId, newPlaylist, play){
+		if(newPlaylist != currentPlaylist){
+			currentPlaylist = newPlaylist;
+			shufflePlaylist = currentPlaylist.slice();
+			shuffleArray(shufflePlaylist);
+		}
+		
+		if(shuffle == true){
+			currentIndex = shufflePlaylist.indexof(trackId);
+		} else {
+			currentIndex = currentPlaylist.indexof(trackId);
+		}
+		pauseSong();
+		
+		$.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function(data){
+			var track = JSON.parse(data);
+			$(".trackName span").text(track.title);	
+			
+			$.post("includes/handlers/ajax/getArtistJson.php", { artistId: track.artist }, function(data){
+				
+			})
+		});
+	}
+	
+	function playSong(){
+		
+	}
+	
 </script>
 
 <div id="nowPlayingBarContainer">
