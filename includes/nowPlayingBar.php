@@ -3,7 +3,7 @@
 
 	$resultArray = array();
 
-	while ($row = mysqli_fetch_array($songQuery)) {
+	while($row = mysqli_fetch_array($songQuery)) {
 		array_push($resultArray, $row['id']);
 	}
 
