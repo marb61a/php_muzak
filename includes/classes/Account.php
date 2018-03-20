@@ -1,6 +1,5 @@
 <?php
 	class Account {
-
 		private $con;
 		private $errorArray;
 
@@ -60,7 +59,6 @@
 		}
 
 		private function validateUsername($un) {
-
 			if(strlen($un) > 25 || strlen($un) < 5) {
 				array_push($this->errorArray, Constants::$usernameCharacters);
 				return;
@@ -104,11 +102,9 @@
 				array_push($this->errorArray, Constants::$emailTaken);
 				return;
 			}
-
 		}
 
 		private function validatePasswords($pw, $pw2) {
-			
 			if($pw != $pw2) {
 				array_push($this->errorArray, Constants::$passwordsDoNoMatch);
 				return;
@@ -123,7 +119,7 @@
 				array_push($this->errorArray, Constants::$passwordCharacters);
 				return;
 			}
+
 		}
-		
 	}
 ?>
