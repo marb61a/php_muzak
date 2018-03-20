@@ -147,3 +147,31 @@ function hideOptionsMenu(){
 		menu.css("display", "none");
 	}
 }
+
+function showOptionsMenu(button){
+	var songId = $(button).prevAll(".songId").val();
+	var menu = $(".optionsMenu");
+	var menuWidth = menu.width();
+	menu.find(".songId").val(songId);
+	
+	//Distance from top of window to top of document
+	var scrollTop = $(window).scrollTop(); 
+	//Distance from top of document
+	var elementOffset = $(button).offset().top; 
+
+	var top = elementOffset - scrollTop;
+	var left = $(button).position().left;
+
+	menu.css({ "top": top + "px", "left": left - menuWidth + "px", "display": "inline" });
+}
+
+function formatTime(seconds){
+	var time = Math.round(seconds);
+	// The floor operator rounds down
+	var minutes = Math.floor(time / 60);
+	var seconds = time - (minutes * 60);
+
+	var extraZero = (seconds < 10) ? "0" : "";
+
+	return minutes + ":" + extraZero + seconds;
+}

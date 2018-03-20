@@ -19,8 +19,7 @@
 
 	<div class="rightSection">
 		<h2><?php echo $album->getTitle(); ?></h2>
-		<p role="link" tabindex="0" onclick="openPage('artist.php?id=<?php echo $artistId; ?>')">
-			By <?php echo $artist->getName(); ?></p>
+		<p role="link" tabindex="0" onclick="openPage('artist.php?id=<?php echo $artistId; ?>')">By <?php echo $artist->getName(); ?></p>
 		<p><?php echo $album->getNumberOfSongs(); ?> songs</p>
 	</div>
 </div>
@@ -31,26 +30,30 @@
 			$songIdArray = $album->getSongIds();
 
 			$i = 1;
-			foreach ($$songIdArray as $songId) {
+			foreach($songIdArray as $songId) {
 				$albumSong = new Song($con, $songId);
 				$albumArtist = $albumSong->getArtist();
-
-				echo "
-					<li class='tracklistRow'>
+				echo "<li class='tracklistRow'>
 						<div class='trackCount'>
 							<img class='play' src='assets/images/icons/play-white.png' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
 							<span class='trackNumber'>$i</span>
 						</div>
+						<div class='trackInfo'>
+							<span class='trackName'>" . $albumSong->getTitle() . "</span>
+							<span class='artistName'>" . $albumArtist->getName() . "</span>
+						</div>
+	
 						<div class='trackOptions'>
 							<input type='hidden' class='songId' value='" . $albumSong->getId() . "'>
 							<img class='optionsButton' src='assets/images/icons/more.png' onclick='showOptionsMenu(this)'>
 						</div>
+	
 						<div class='trackDuration'>
 							<span class='duration'>" . $albumSong->getDuration() . "</span>
 						</div>
-					</li>
-				";
-				$i = Si + 1;
+					</li>";
+	
+				$i = $i + 1;
 			}
 		?>
 
