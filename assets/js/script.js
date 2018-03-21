@@ -38,7 +38,7 @@ $(document).on("change", "select.playlist", function(){
 
 		hideOptionsMenu();
 		select.val("");
-	})
+	});
 });
 
 function updateEmail(emailClass){
@@ -47,7 +47,7 @@ function updateEmail(emailClass){
 	$.post("includes/handlers/ajax/updateEmail.php", { 
 		email: emailValue, 
 		username: userLoggedIn
-	})
+	});
 }
 
 function updatePassword(oldPasswordClass, newPasswordClass1, newPasswordClass2){
@@ -63,13 +63,13 @@ function updatePassword(oldPasswordClass, newPasswordClass1, newPasswordClass2){
 	})
 		.done(function(response){
 			$("." + oldPasswordClass).nextAll(".message").text(response);
-		})
+		});
 }
 
 function logout(){
 	$.post("includes/handlers/ajax/logout.php", function(){
 		location.reload();
-	})
+	});
 }
 
 function openPage(url){
@@ -206,4 +206,32 @@ function Audio(){
 		var duration = formatTime(this.duration);
 		$(".progressTime.remaining").text(duration);	
 	});
+	
+	this.audio.addEventListener("timeupdate", function() {
+		if(this.duration){
+			updateTimeProgressBar(this);
+		}    
+	});
+	
+	this.audio.addEventListener("volumechange", function() {
+		updateVolumeProgressBar(this);
+	});
+	
+	this.setTrack = function(track){
+		this.currentlyPlaying = track;
+		this.audio.src = track.path;
+	};
+	
+	this.play = function() {
+		this.audio.play();
+	};
+
+	this.pause = function() {
+		this.audio.pause();
+	};
+
+	this.setTime = function(seconds) {
+		this.audio.currentTime = seconds;
+	};
+
 }
