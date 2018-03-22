@@ -1,5 +1,5 @@
 <?php
-	includes("includes/includedFiles.php");
+	include("includes/includedFiles.php");
 ?>
 
 <div class="userDetails">
