@@ -17,7 +17,7 @@
     if ($con->connect_error) {
         die("Connection failed: " . $db->connect_error);
     } 
-    echo "Connected successfully (".$con->host_info.")";
+    // echo "Connected successfully (".$con->host_info.")";
 
 	//$con = mysqli_connect("localhost", "root", "", "phpmuzak");
 
