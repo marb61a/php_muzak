@@ -1,11 +1,6 @@
 <?php
 	$songQuery = mysqli_query($con, "SELECT id FROM Songs ORDER BY RAND() LIMIT 10");
 	
-	// if (!$check1_res) {
-	//     printf("Error: %s\n", mysqli_error($con));
-	//     exit();
-	// }
-	
 	$resultArray = array();
 	
 	while($row = mysqli_fetch_array($songQuery)) {
@@ -186,6 +181,7 @@ function setTrack(trackId, newPlaylist, play) {
 			$(".trackInfo .trackName span").attr("onclick", "openPage('album.php?id=" + album.id + "')");
 		});
 
+
 		audioElement.setTrack(track);
 
 		if(play == true) {
@@ -196,6 +192,7 @@ function setTrack(trackId, newPlaylist, play) {
 }
 
 function playSong() {
+
 	if(audioElement.audio.currentTime == 0) {
 		$.post("includes/handlers/ajax/updatePlays.php", { songId: audioElement.currentlyPlaying.id });
 	}
@@ -224,19 +221,28 @@ function pauseSong() {
 				</span>
 
 				<div class="trackInfo">
+
 					<span class="trackName">
 						<span role="link" tabindex="0"></span>
 					</span>
+
 					<span class="artistName">
 						<span role="link" tabindex="0"></span>
 					</span>
+
 				</div>
+
+
+
 			</div>
 		</div>
 
 		<div id="nowPlayingCenter">
+
 			<div class="content playerControls">
+
 				<div class="buttons">
+
 					<button class="controlButton shuffle" title="Shuffle button" onclick="setShuffle()">
 						<img src="assets/images/icons/shuffle.png" alt="Shuffle">
 					</button>
@@ -260,18 +266,29 @@ function pauseSong() {
 					<button class="controlButton repeat" title="Repeat button" onclick="setRepeat()">
 						<img src="assets/images/icons/repeat.png" alt="Repeat">
 					</button>
+
 				</div>
 
+
 				<div class="playbackBar">
+
 					<span class="progressTime current">0.00</span>
+
 					<div class="progressBar">
 						<div class="progressBarBg">
 							<div class="progress"></div>
 						</div>
 					</div>
+
 					<span class="progressTime remaining">0.00</span>
+
+
 				</div>
+
+
 			</div>
+
+
 		</div>
 
 		<div id="nowPlayingRight">
@@ -289,5 +306,10 @@ function pauseSong() {
 
 			</div>
 		</div>
+
+
+
+
 	</div>
+
 </div>

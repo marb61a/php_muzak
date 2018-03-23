@@ -72,7 +72,6 @@ function logout() {
 }
 
 function openPage(url) {
-
 	if(timer != null) {
 		clearTimeout(timer);
 	}
@@ -92,7 +91,6 @@ function removeFromPlaylist(button, playlistId) {
 
 	$.post("includes/handlers/ajax/removeFromPlaylist.php", { playlistId: playlistId, songId: songId })
 	.done(function(error) {
-
 		if(error != "") {
 			alert(error);
 			return;
@@ -107,10 +105,8 @@ function createPlaylist() {
 	var popup = prompt("Please enter the name of your playlist");
 
 	if(popup != null) {
-
 		$.post("includes/handlers/ajax/createPlaylist.php", { name: popup, username: userLoggedIn })
 		.done(function(error) {
-
 			if(error != "") {
 				alert(error);
 				return;
@@ -154,8 +150,11 @@ function showOptionsMenu(button) {
 	var menuWidth = menu.width();
 	menu.find(".songId").val(songId);
 
-	var scrollTop = $(window).scrollTop(); //Distance from top of window to top of document
-	var elementOffset = $(button).offset().top; //Distance from top of document
+	// Distance from top of window to top of document
+	var scrollTop = $(window).scrollTop(); 
+	
+	// Distance from top of document
+	var elementOffset = $(button).offset().top; 
 
 	var top = elementOffset - scrollTop;
 	var left = $(button).position().left;
@@ -193,7 +192,6 @@ function playFirstSong() {
 }
 
 function Audio() {
-
 	this.currentlyPlaying;
 	this.audio = document.createElement('audio');
 

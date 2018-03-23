@@ -1,6 +1,5 @@
 <?php
 	class Album {
-
 		private $con;
 		private $id;
 		private $title;
@@ -14,11 +13,6 @@
 
 			$query = mysqli_query($this->con, "SELECT * FROM albums WHERE id='$this->id'");
 			$album = mysqli_fetch_array($query);
-			
-			// if (!$check1_res) {
-			//     printf("Error: %s\n", mysqli_error($con));
-			//     exit();
-			// }
 
 			$this->title = $album['title'];
 			$this->artistId = $album['artist'];
@@ -48,7 +42,6 @@
 		}
 
 		public function getSongIds() {
-
 			$query = mysqli_query($this->con, "SELECT id FROM Songs WHERE album='$this->id' ORDER BY albumOrder ASC");
 
 			$array = array();
